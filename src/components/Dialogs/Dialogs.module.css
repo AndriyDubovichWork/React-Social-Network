@@ -1,0 +1,30 @@
+.dialogs {
+    background-color: black;
+    padding: 1%;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.dialogItems {
+    padding: 10px;
+}
+.dialog a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    font-size: 20px;
+}
+.dialog .active {
+    color: rgba(5, 163, 255, 0.75);
+    text-decoration: none;
+}
+.dialog .active:hover {
+    color: rgba(5, 163, 255, 1);
+}
+.dialog a:hover {
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+.messages {
+    padding: 10px;
+}
+.message {
+}
