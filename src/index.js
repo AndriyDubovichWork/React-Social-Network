@@ -5,9 +5,27 @@ import './styles_sass/App.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+let messages = [
+    { id: 1, message: 'hi' },
+    { id: 2, message: 'I' },
+    { id: 3, message: 'know' },
+    { id: 4, message: 'you dumb' },
+    { id: 5, message: 'Lol' },
+];
+let dialogs = [
+    { id: 1, name: 'Andriy' },
+    { id: 2, name: 'Ivanko' },
+    { id: 3, name: 'Olexandr' },
+    { id: 4, name: 'Roman' },
+    { id: 5, name: 'Ura' },
+];
+let posts = [
+    { id: 1, message: 'Hi holywood', likeCount: 20 },
+    { id: 2, message: 'mega post', likeCount: 15 },
+];
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <App messages={messages} dialogs={dialogs} posts={posts} />
     </React.StrictMode>,
     document.getElementById('root')
 );
