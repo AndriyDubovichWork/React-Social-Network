@@ -26,5 +26,8 @@
 .messages {
     padding: 10px;
 }
-.message {
+.dialogImg {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }

@@ -5,15 +5,30 @@ import Dialog from './DialogItem/DialogItem';
 
 
 const Dialogs = (props) => {
+    
+    const messages = props.state.messages
+    const dialogs = props.state.dialogs
 
-    const messages = props.message
-    const dialogs = props.dialogs
 
-
-    let DialogsElements = dialogs.map((dialog)=> <Dialog key ={dialog.id} name= {dialog.name} id={dialog.id}/>)
+    let DialogsElements = dialogs.map((dialog)=> <Dialog img={dialog.img}key ={dialog.id} name= {dialog.name} id={dialog.id}/>)
 
     let MessagesElements = messages.map((message)=><Message key={message.id}message={message.message}/>)
 
+    let MessageText = React.createRef()
+    
+    
+    let MessageOnChange=() =>{
+        let text = MessageText.current.value
+        
+        props.MessageOnChange(text)
+        
+
+    }
+    let sendMessage=()=>{
+         
+        props.addMessage()
+        MessageText.current.value=''
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
@@ -23,6 +38,10 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {MessagesElements}
+                <div className={s.messageInp}>
+                    <input placeholder='Enter message' ref={MessageText} onChange={MessageOnChange}></input>
+                    <button onClick={sendMessage}>Send</button>
+                </div>
             </div>
         </div>
     );

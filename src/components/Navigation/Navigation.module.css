@@ -25,3 +25,9 @@
 .item a.activeLink:hover {
     color: rgba(5, 163, 255, 1);
 }
+
+.friends {
+    margin-top: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
