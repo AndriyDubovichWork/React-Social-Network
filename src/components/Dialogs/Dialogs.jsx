@@ -4,6 +4,7 @@ import Message from './Message/Message';
 import Dialog from './DialogItem/DialogItem';
 
 
+ 
 const Dialogs = (props) => {
     
     const messages = props.state.messages
@@ -17,7 +18,7 @@ const Dialogs = (props) => {
     let MessageText = React.createRef()
     
     
-    let MessageOnChange=() =>{
+    let MessageOnChange = () =>{
         let text = MessageText.current.value
         
         props.MessageOnChange(text)
@@ -26,7 +27,7 @@ const Dialogs = (props) => {
     }
     let sendMessage=()=>{
          
-        props.addMessage()
+        props.sendMessage()
         MessageText.current.value=''
     }
     return (
@@ -39,7 +40,7 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 {MessagesElements}
                 <div className={s.messageInp}>
-                    <input placeholder='Enter message' ref={MessageText} onChange={MessageOnChange}></input>
+                    <input placeholder='Enter message' ref={MessageText} onChange={MessageOnChange} value={props.state.newMessage}></input>
                     <button onClick={sendMessage}>Send</button>
                 </div>
             </div>

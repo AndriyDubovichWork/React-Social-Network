@@ -4,7 +4,7 @@ import Friend from './Friend/Friend'
 import {NavLink} from 'react-router-dom'
 const Navigation = (props) => {
     
-    const friends = props.state.friends
+    const friends = props.friends
     let FriendItems = friends.map( friends=><Friend key={friends.id} img={friends.friendimg} name={friends.friendname}/>) 
     return (
             

@@ -1,8 +1,24 @@
-import { RerenderEntierTree } from './render';
-import state from './Redux/State';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import './styles_sass/App.scss';
+import App from './App';
+import store from './Redux/ReduxStore';
+import StoreContext from './StoreContext';
 
-RerenderEntierTree(state);
+let RerenderEntierTree = () => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <StoreContext.Provider value={store}>
+                <App />
+            </StoreContext.Provider>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+};
+RerenderEntierTree(store.getState);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+store.subscribe(() => {
+    let state = store.getState();
+    RerenderEntierTree(state);
+});

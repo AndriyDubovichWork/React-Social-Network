@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from './components/Header/Header.jsx';
-import Navigation from './components/Navigation/Navigation.jsx';
-import Profile from './components/Profile/Profile.jsx';
-import Dialogs from './components/Dialogs/Dialogs.jsx';
-import Music from './components/Music/Music.jsx';
-import News from './components/News/News.jsx';
-import Settings from './components/Settings/Settings.jsx';
+import Header from './components/Header/Header';
+import NavigationContainer from './components/Navigation/NavigationContainer';
+import Profile from './components/Profile/Profile';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import Music from './components/Music/Music';
+import News from './components/News/News';
+import Settings from './components/Settings/Settings';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 function App(props) {
@@ -13,28 +13,14 @@ function App(props) {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header />
-                <Navigation state={props.state.sidebar} />
+
+                <NavigationContainer />
                 <div className='content'>
                     <Route
                         path='/dialogs'
-                        render={() => (
-                            <Dialogs
-                                state={props.state.dialogsPage}
-                                MessageOnChange={props.MessageOnChange}
-                                addMessage={props.addMessage}
-                            />
-                        )}
+                        render={() => <DialogsContainer />}
                     />
-                    <Route
-                        path='/profile'
-                        render={() => (
-                            <Profile
-                                state={props.state.profilePage}
-                                InputPostsOnChange={props.InputPostsOnChange}
-                                addPost={props.addPost}
-                            />
-                        )}
-                    />
+                    <Route path='/profile' render={() => <Profile />} />
                     <Route path='/news' component={News} />
                     <Route path='/music' component={Music} />
                     <Route path='/settings' component={Settings} />
