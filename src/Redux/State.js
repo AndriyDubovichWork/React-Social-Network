@@ -3,16 +3,16 @@ import { RerenderEntierTree } from './../render';
 const img =
     'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg';
 
-let state = {
-    profilePage: {
-        posts: [
-            { id: 1, message: 'Hi holywood', likeCount: 20 },
-            { id: 2, message: 'mega post', likeCount: 15 },
-        ],
-        newPost: '',
-    },
-    dialogsPage: {
-        dialogs: [
+    _state: {
+        profilePage: {
+            posts: [
+                { id: 1, message: 'Hi holywood', likeCount: 20 },
+                { id: 2, message: 'mega post', likeCount: 15 },
+            ],
+            newPost: '',
+        },
+        dialogsPage: {
+            dialogs: [
             { id: 1, name: 'Andriy', img: img },
             { id: 2, name: 'Ivanko', img: img },
             { id: 3, name: 'Olexandr', img: img },
