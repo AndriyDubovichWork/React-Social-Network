@@ -1,0 +1,30 @@
+.users {
+    background-color: black;
+    padding: 1%;
+}
+.users span div img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+.activePage {
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(5, 163, 255, 0.5);
+}
+.activePage:hover {
+    color: rgba(5, 163, 255, 1);
+    cursor: pointer;
+}
+.pageNavigation {
+    margin: 5px;
+}
+.pageNavigationNumber {
+    margin: 5px;
+    font-size: 20px;
+}
+.pageNavigationNumber:hover {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+}

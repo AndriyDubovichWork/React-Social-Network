@@ -11,7 +11,6 @@ let initialState = {
         { id: 3, name: 'Olexandr', img: _img },
         { id: 4, name: 'Roman', img: _img },
         { id: 5, name: 'Ura', img: _img },
-        { id: 6, name: 'Mama Olena', img: _img },
     ],
     messages: [
         { id: 1, message: 'hi' },
@@ -28,17 +27,19 @@ const DialogReducer = (state = initialState, action) => {
         case ADD_MESSAGE:
             if (state.newMessage !== '') {
                 let newMessage = {
-                    id: 7,
+                    id: 6,
                     message: state.newMessage,
                 };
-                state.messages.push(newMessage);
-                state.newMessage = '';
-                return state;
+                return {
+                    ...state,
+                    messages: [...state.messages, newMessage],
+                    newMessage: '',
+                };
             }
             break;
         case MESSAGE_ON_CHANGE:
-            state.newMessage = action.MessageText;
-            return state;
+            return { ...state, newMessage: action.MessageText };
+
         default:
             return state;
     }

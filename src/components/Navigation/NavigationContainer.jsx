@@ -1,23 +1,18 @@
+// eslint-disable-next-line
 import React from 'react';
 import Navigation from './Navigation'
-import StoreContext from './../../StoreContext'
-const NavigationContainer = (props) => {
-    
-    return (
-        
-        <StoreContext.Consumer>
-            {(store)=>{
-                let state=store.getState()
-                return <Navigation friends={state.sidebar.friends}/>
+import {connect} from 'react-redux'
 
-            }
-        }       
-        </StoreContext.Consumer>
-        
 
-            
-        
-    );
-};
+const MapStateToProps = (state) =>{
+    return {
+        friends:state.sidebar.friends
+    }
+}
+const MapDispatchToProps = () =>{return {}}
+
+const NavigationContainer = connect(MapStateToProps,MapDispatchToProps)(Navigation)
+
+
 
 export default NavigationContainer;

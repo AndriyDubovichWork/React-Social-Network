@@ -2,14 +2,17 @@ import React from 'react';
 
 import s from './ProfileInfo.module.css';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    
+        
+
     return (       
 
         <div className={s.profileInfo}>
             <div className={s.bigpic}>
                 <img
                     alt=''
-                    src='https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg'
+                    src={props.profile.photos.large}
                 />
                 
             </div>
@@ -17,12 +20,16 @@ const ProfileInfo = () => {
                 <img
                     className={s.profileLogo}
                     alt=''
-                    src='https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg'
+                    src={props.profile.photos.small}
                 />  
                 
-                <div>description</div>
+                <div>{props.profile.aboutMe}</div>
             </div>
-        
+            <div>
+            
+                <span>{props.profile.lookingForAJob?'Looking for a job':'Not Looking for a job'}</span><br/>
+                <span>{props.profile.lookingForAJob?props.profile.lookingForAJobDescription:''}</span>
+            </div>
          </div>
         
     );

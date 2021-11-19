@@ -1,5 +1,8 @@
+import { ProfileAPI } from '../api/api';
+
 const ADD_POST = 'ADD-POST';
 const INPUT_POST_ON_CHANGE = 'INPUT-POST-ON-CHANGE';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState = {
     posts: [
@@ -7,6 +10,7 @@ let initialState = {
         { id: 2, message: 'mega post', likeCount: 15 },
     ],
     newPost: '',
+    profile: null,
 };
 
 const ProfileReducer = (state = initialState, action) => {
@@ -18,15 +22,20 @@ const ProfileReducer = (state = initialState, action) => {
                     message: state.newPost,
                     likeCount: 0,
                 };
-                state.posts.push(newPost);
-                state.newPost = '';
-                return state;
+                return {
+                    ...state,
+                    posts: [...state.posts, newPost],
+                    newPost: '',
+                };
             }
+
             break;
         case INPUT_POST_ON_CHANGE:
-            state.newPost = action.PostText;
-            return state;
-
+            return { ...state, newPost: action.PostText };
+            break;
+        case SET_USER_PROFILE:
+            return { ...state, profile: action.profile };
+            break;
         default:
             return state;
     }
@@ -37,5 +46,16 @@ export const OnPostChangeActionCreator = (text) => ({
     type: INPUT_POST_ON_CHANGE,
     PostText: text,
 });
+export const setUserProfile = (profile) => ({
+    type: SET_USER_PROFILE,
+    profile,
+});
+export const GetProfileData = (userId) => {
+    return (dispatch) => {
+        ProfileAPI.getUserProfile(userId).then((data) => {
+            dispatch(setUserProfile(data));
+        });
+    };
+};
 
 export default ProfileReducer;

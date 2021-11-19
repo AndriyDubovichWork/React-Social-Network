@@ -1,37 +1,25 @@
+// eslint-disable-next-line
 import React from 'react';
 import { addPostActionCreator, OnPostChangeActionCreator } from '../../../Redux/ProfileReduce';
 import MyPosts from './MyPosts'
-import StoreContext from './../../../StoreContext'
+import {connect} from 'react-redux'
 
-export const MyPostsContainer = (props) => {
-    
-    
 
-    return (     
-        <StoreContext.Consumer >
-            {(store)=>{
-                const state = store.getState()
+const MapStateToProps = (state) =>{
     
-    
-                let InputPostsOnChange=(text) =>{
-                    
-                    
-                    store.dispatch(OnPostChangeActionCreator(text))
-                    
-            
-                }
-                let AddPost=()=>{
-                     
-                    store.dispatch(addPostActionCreator())
-                    
-            
-                }                
-            return <MyPosts InputPostsOnChange={InputPostsOnChange} 
-            AddPost={AddPost} 
-            posts={state.profilePage.posts} 
-            newPost={state.profilePage.newPost}/>}
-        }
-        </StoreContext.Consumer>    
-    );
-};
+    return {
+        posts:state.profilePage.posts,
+        newPost:state.profilePage.newPost
+    }
+}
+const MapDispatchToProps = (dispatch) =>{
+    return {
+    InputPostsOnChange:(text)=>{dispatch(OnPostChangeActionCreator(text))},
+    AddPost:()=>{dispatch(addPostActionCreator())}
+}}
 
+const MyPostsContainer = connect(MapStateToProps,MapDispatchToProps)(MyPosts)
+
+
+
+export default MyPostsContainer;
