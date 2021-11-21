@@ -3,6 +3,7 @@ import { ProfileAPI } from '../api/api';
 const ADD_POST = 'ADD-POST';
 const INPUT_POST_ON_CHANGE = 'INPUT-POST-ON-CHANGE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
     posts: [
@@ -11,6 +12,7 @@ let initialState = {
     ],
     newPost: '',
     profile: null,
+    status: '',
 };
 
 const ProfileReducer = (state = initialState, action) => {
@@ -36,6 +38,9 @@ const ProfileReducer = (state = initialState, action) => {
         case SET_USER_PROFILE:
             return { ...state, profile: action.profile };
             break;
+        case SET_STATUS:
+            return { ...state, status: action.status };
+            break;
         default:
             return state;
     }
@@ -50,6 +55,29 @@ export const setUserProfile = (profile) => ({
     type: SET_USER_PROFILE,
     profile,
 });
+export const setStatus = (status) => {
+    return {
+        type: SET_STATUS,
+        status,
+    };
+};
+
+export const GetStatus = (userId) => {
+    return (dispatch) => {
+        ProfileAPI.getStatus(userId).then((data) => {
+            dispatch(setStatus(data));
+        });
+    };
+};
+export const UpdateStatus = (status) => {
+    return (dispatch) => {
+        ProfileAPI.UpdateStatus(status).then((response) => {
+            if (response.data.resultCode === 0) {
+                dispatch(setStatus(status));
+            }
+        });
+    };
+};
 export const GetProfileData = (userId) => {
     return (dispatch) => {
         ProfileAPI.getUserProfile(userId).then((data) => {

@@ -4,6 +4,7 @@ import UsersAPICompon from './UsersAPICompon.js'
 import {connect} from 'react-redux'
 import {withAuthRedirect} from '../../hoc/withAuthRedirect'
 import { Follow,Unfollow, SetUsers ,setCurrentPage,ToggleFollowingProgress,getUsersThunkCreator} from '../../Redux/UsersReduce';
+import { compose } from 'redux';
 
 const MapStateToProps=(state)=>{
     
@@ -17,14 +18,19 @@ const MapStateToProps=(state)=>{
         
     }
 }
-let withRedirect = withAuthRedirect(UsersAPICompon)
 
-export default connect(MapStateToProps,{
-    Follow,
-    Unfollow,
-    SetUsers,
-    setCurrentPage,
-    
-    ToggleFollowingProgress,
-    getUsers:getUsersThunkCreator,
-})(withRedirect);
+
+
+export default compose(
+    withAuthRedirect,
+
+    connect(MapStateToProps,{
+        Follow,
+        Unfollow,
+        SetUsers,
+        setCurrentPage,
+        
+        ToggleFollowingProgress,
+        getUsers:getUsersThunkCreator,
+    })
+)(UsersAPICompon)
