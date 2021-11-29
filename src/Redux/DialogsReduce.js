@@ -19,16 +19,17 @@ let initialState = {
         { id: 4, message: 'you dumb' },
         { id: 5, message: 'Lol' },
     ],
-    newMessage: '',
 };
 
 const DialogReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
-            if (state.newMessage !== '') {
+            debugger;
+
+            if (action.MessageText !== '') {
                 let newMessage = {
                     id: 6,
-                    message: state.newMessage,
+                    message: action.MessageText,
                 };
                 return {
                     ...state,
@@ -37,18 +38,15 @@ const DialogReducer = (state = initialState, action) => {
                 };
             }
             break;
-        case MESSAGE_ON_CHANGE:
-            return { ...state, newMessage: action.MessageText };
 
         default:
             return state;
     }
 };
 
-export const OnMessageChangeActionCreator = (text) => ({
-    type: MESSAGE_ON_CHANGE,
+export const SendMessageActionCreator = (text) => ({
+    type: ADD_MESSAGE,
     MessageText: text,
 });
-export const SendMessageActionCreator = () => ({ type: ADD_MESSAGE });
 
 export default DialogReducer;

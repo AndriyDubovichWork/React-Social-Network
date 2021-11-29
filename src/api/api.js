@@ -43,4 +43,12 @@ export const ProfileAPI = {
             .put(`profile/status`, { status })
             .then((response) => response.data);
     },
+    LogIn: (email, password, rememberMe) => {
+        return instance
+            .post(`auth/login`, { email, password, rememberMe })
+            .then((response) => {
+                console.log(response);
+                return response;
+            });
+    },
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import MyPostsContainer from './MyPosts/MyPostsContainer'
+import MyPosts from './MyPosts/MyPosts'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import s from './Profile.module.css';
 import Preloader from '../common/preloader/preloader'
@@ -17,7 +17,7 @@ const Profile = (props) => {
         <div className={s.profile}>
 
             <ProfileInfo profile={props.profile} status = {props.status} UpdateStatus={props.UpdateStatus}/>
-            <MyPostsContainer store={props.store}/>
+            <MyPosts store={props.store}/>
         </div>
     );
 };

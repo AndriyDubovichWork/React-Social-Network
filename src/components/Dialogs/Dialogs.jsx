@@ -3,8 +3,20 @@ import s from './Dialogs.module.css';
 import Message from './Message/Message';
 import Dialog from './DialogItem/DialogItem';
 import { Redirect } from 'react-router';
+import { Field, reduxForm } from 'redux-form'
 
 
+const AddMessageForm = (props)=>{
+    return(
+        <form className={s.messageInp} onSubmit={props.handleSubmit}>
+            <Field placeholder='Enter message' component='input' name='message'></Field>
+            <button >Send</button>
+        </form>
+    )
+}
+const AddMessageReduxForm = reduxForm({
+    form:'addMessage'
+  })(AddMessageForm)
  
 const Dialogs = (props) => {
     
@@ -16,23 +28,15 @@ const Dialogs = (props) => {
 
     let MessagesElements = messages.map((message)=><Message key={message.id}message={message.message}/>)
 
-    let MessageText = React.createRef()
-    
-    
-    let MessageOnChange = () =>{
-        let text = MessageText.current.value
-        
-        props.MessageOnChange(text)
-        
 
-    }
-    let sendMessage=()=>{
-         
-        props.sendMessage()
-        MessageText.current.value=''
+    let sendMessage=(formData)=>{
+        props.sendMessage(formData.message)
+        formData.message=''
     }
       
-    console.log()
+    
+
+
     if(!props.isAuth) return <Redirect to={'/login'}/>
     return (
         <div className={s.dialogs}>
@@ -43,10 +47,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {MessagesElements}
-                <div className={s.messageInp}>
-                    <input placeholder='Enter message' ref={MessageText} onChange={MessageOnChange} value={props.state.newMessage}></input>
-                    <button onClick={sendMessage}>Send</button>
-                </div>
+                <AddMessageReduxForm onSubmit={sendMessage}/>
             </div>
         </div>
     );
