@@ -64,11 +64,11 @@ export const GetStatus = (userId) => {
 };
 export const UpdateStatus = (status) => {
     return (dispatch) => {
-        ProfileAPI.UpdateStatus(status).then((response) => {
+        ProfileAPI.updateStatus(status).then((response) => {
             if (response.data.resultCode === 0) {
                 dispatch(setStatus(status));
             }
-        });
+        })
     };
 };
 export const GetProfileData = (userId) => {

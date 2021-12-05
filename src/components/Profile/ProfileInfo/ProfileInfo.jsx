@@ -4,7 +4,9 @@ import s from './ProfileInfo.module.css';
 
 const ProfileInfo = (props) => {
     
-        
+    if(!props.profile.photos.small){
+        props.profile.photos.small='https://i.pinimg.com/236x/04/c7/8a/04c78a3bec46babab4a23e3e13091552--cover-picture-facebook-profile.jpg'
+    }
     return (       
 
         <div className={s.profileInfo}>

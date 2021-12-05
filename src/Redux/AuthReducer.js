@@ -1,4 +1,5 @@
-import { authMe, ProfileAPI } from '../api/api';
+import { stopSubmit } from 'redux-form';
+import { AuthAPI } from '../api/api';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -16,7 +17,7 @@ function AuthReducer(state = initialState, action) {
             return {
                 ...state,
                 ...action.data,
-                isAuth: true,
+                
             };
             break;
 
@@ -25,28 +26,40 @@ function AuthReducer(state = initialState, action) {
     }
 }
 
-export const SetAuthUserData = (id, email, login) => {
+export const SetAuthUserData = (id, email, login,isAuth) => {
     return {
         type: SET_USER_DATA,
-        data: { id, email, login },
+        data: { id, email, login,isAuth },
     };
 };
 
 export const AuthMe = () => {
     return (dispatch) => {
-        authMe().then((data) => {
+        AuthAPI.authMe().then((data) => {
             if (data.resultCode === 0) {
                 let { id, email, login } = data.data;
-                dispatch(SetAuthUserData(id, email, login));
+                dispatch(SetAuthUserData(id, email, login,true));
             }
         });
     };
 };
 export const LoginMe = (email, password, rememberMe) => {
     return (dispatch) => {
-        ProfileAPI.LogIn(email, password, rememberMe).then((data) => {
+        AuthAPI.LogIn(email, password, rememberMe).then((data) => {
             if (data.resultCode === 0) {
                 dispatch(AuthMe());
+            }else{
+                const message = data.data.messages.length>0?data.data.messages[0]:'some error,try to reload page'
+                dispatch(stopSubmit('login',{_error:message}))
+            }
+        })
+    };
+}
+export const LogOutMe = () => {
+    return (dispatch) => {
+        AuthAPI.LogOut().then((data) => {
+            if (data.resultCode === 0) {
+                dispatch(SetAuthUserData(null, null, null,false));
             }
         });
     };

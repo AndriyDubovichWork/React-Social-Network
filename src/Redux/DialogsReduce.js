@@ -24,7 +24,6 @@ let initialState = {
 const DialogReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
-            debugger;
 
             if (action.MessageText !== '') {
                 let newMessage = {

@@ -9,18 +9,18 @@ class ProfileStatus extends React.Component {
     }
     activateEditMode = ()=>{
 
-      this.state.setState({
+      this.setState({
         EditMode:true
-      }).bind(this)
+      })
     }  
     deactivateEditMode = ()=>{
-      this.state.setState({
+      this.setState({
         EditMode:false
       })
       this.props.UpdateStatus(this.state.status)
     }  
     StatusChange=(e)=>{
-      this.state.setState({
+      this.setState({
         status:e.currentTarget.value
       })
     }
@@ -39,7 +39,7 @@ class ProfileStatus extends React.Component {
         <div>
           {!this.state.EditMode&&
           <div>
-            <span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status|| 'Account has nostatus'}</span>
+            <span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status|| 'Account has no status'}</span>
           </div>
           }
           {this.state.EditMode&&

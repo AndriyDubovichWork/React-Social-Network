@@ -7,9 +7,22 @@ const instance = axios.create({
         'API-KEY': '25b10c74-22ee-49b1-87fa-5eaa964453f1',
     },
 });
-export const authMe = () => {
-    return instance.get(`auth/me`).then((response) => response.data);
-};
+export const AuthAPI={
+    authMe:() => {
+        return instance.get(`auth/me`).then((response) => response.data);
+    },
+    LogIn: (email, password, rememberMe) => {
+        return instance
+            .post(`auth/login`, { email, password, rememberMe })
+            .then(response => response)
+    },
+    LogOut: () => {
+        return instance
+            .delete(`auth/login`)
+            .then(response => response)
+    },
+}
+
 
 export const UsersAPI = {
     getUsers: (currentPage = 1, pageSize = 10) => {
@@ -43,12 +56,5 @@ export const ProfileAPI = {
             .put(`profile/status`, { status })
             .then((response) => response.data);
     },
-    LogIn: (email, password, rememberMe) => {
-        return instance
-            .post(`auth/login`, { email, password, rememberMe })
-            .then((response) => {
-                console.log(response);
-                return response;
-            });
-    },
+
 };
