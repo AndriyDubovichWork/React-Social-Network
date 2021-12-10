@@ -1,33 +1,33 @@
 .nav {
-    background-color: black;
-    box-shadow: 2px 0 5px #fff;
-    grid-area: nav;
-    padding: 20px;
-    position: fixed;
-    height: 90%;
-    top: 10%;
-    width: 14%;
+  background-color: #3c4041;
+  box-shadow: 2px 0 5px #fff;
+  grid-area: nav;
+  padding: 20px;
+  position: fixed;
+  height: 90%;
+  top: 10%;
+  width: 14%;
 }
 
 .item a {
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-    font-size: 22px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-size: 22px;
 }
 .item a:hover {
-    color: rgba(255, 255, 255, 1);
-    cursor: pointer;
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
 }
 .item a.activeLink {
-    color: rgba(5, 163, 255, 0.75);
+  color: rgba(5, 163, 255, 0.75);
 }
 
 .item a.activeLink:hover {
-    color: rgba(5, 163, 255, 1);
+  color: rgba(5, 163, 255, 1);
 }
 
 .friends {
-    margin-top: 50%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }

@@ -1,0 +1,27 @@
+.selectedPage {
+  margin: 5px;
+  font-weight: bold;
+  color: rgba(5, 163, 255, 0.5);
+}
+.selectedPage:hover {
+  color: rgba(5, 163, 255, 1);
+  cursor: pointer;
+}
+.pageNumber {
+  margin: 5px;
+  font-size: 18px;
+}
+.pageNumber:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+}
+.paginator {
+  margin: 10px;
+}
+.pageNumber {
+  border: 1px solid grey;
+}
+
+.pageNumber.selectedPage {
+  border-color: black;
+}

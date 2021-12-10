@@ -5,10 +5,7 @@ import {AuthMe,LogOutMe} from '../../Redux/AuthReducer'
 
 
 class HeaderContainer extends React.Component{
-    componentDidMount(){
-        
-        this.props.AuthMe()     
-    }
+
     render(){
         return (<Header {...this.props}/>)
     };

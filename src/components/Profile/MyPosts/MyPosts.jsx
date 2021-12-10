@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import Post from './Post/Post'
 import s from './MyPosts.module.css';
 import { Field, reduxForm } from 'redux-form'
@@ -31,35 +31,32 @@ const AddPostReduxForm = reduxForm({
     form:'addPost'
 })(AddPostForm)
 
-const MyPosts = (props) => {
-    
-    let posts = props.posts
-    let PostsItems = posts.map( post=><Post key={post.id}message={post.message} likeCount={post.likeCount}/>) 
-    
-    
-    let AddPost=(formData)=>{
-        
-        props.addPost(formData.NewPostText)
-        formData.NewPostText=''
-
-        
-
+class MyPosts extends PureComponent {
+    shouldComponentUpdate(nextProps,nextState){
+        return nextProps!=this.props || nextState !=this.state
     }
-    
-    return (
 
-            <div className={s.posts}>
+  render() {
+    let posts = this.props.posts;
+    let PostsItems = posts.map(post => <Post key={post.id} message={post.message} likeCount={post.likeCount} />);
+
+    let AddPost = formData => {
+      this.props.addPost(formData.NewPostText);
+      formData.NewPostText = '';
+    };
+
+    return (<div className={s.posts}>
                 <h2>My Posts</h2>
                 <div>
-                    <AddPostReduxForm onSubmit={AddPost}/>
+                    <AddPostReduxForm onSubmit={AddPost} />
                 </div>
                 
                 {PostsItems}
 
-            </div>
-        
-    );
-};
+            </div>);
+  }
+
+}
 
 const MapStateToProps = (state) =>{
     
