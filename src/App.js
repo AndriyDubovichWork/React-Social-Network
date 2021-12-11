@@ -7,7 +7,7 @@ import Music from './components/Music/Music';
 import News from './components/News/News';
 import UsersContainer from './components/Users/UsersContainer';
 import Settings from './components/Settings/Settings';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import LoginPage from './components/Login/Login';
 import { connect, Provider } from 'react-redux';
 import { initialiseApp } from './Redux/AppReducer';
@@ -66,9 +66,9 @@ let MainApp = (props) => {
   return (
     <React.StrictMode>
       <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
           <AppContainer />
-        </BrowserRouter>
+        </HashRouter>
       </Provider>
     </React.StrictMode>
   );
