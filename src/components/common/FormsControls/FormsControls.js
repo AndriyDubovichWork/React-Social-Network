@@ -31,12 +31,20 @@ export const Input = (props) => {
   );
 };
 
-export const createFields = (component, name, type, placeholder, validate) => (
+export const createFields = (
+  component,
+  name,
+  type,
+  placeholder,
+  validate,
+  defaultValue
+) => (
   <Field
     component={component}
     name={name}
     type={type}
     placeholder={placeholder}
     validate={validate}
+    defaultValue={defaultValue}
   />
 );

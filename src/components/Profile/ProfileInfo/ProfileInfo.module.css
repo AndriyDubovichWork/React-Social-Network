@@ -1,8 +1,14 @@
 .profileDescription {
-    padding: 10px;
+  padding: 10px;
 }
 .profileLogo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.contacts {
+  padding-left: 10px;
+  text-decoration: none;
+  color: aqua;
+  font-size: 22px;
 }

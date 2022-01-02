@@ -12,9 +12,11 @@ const Profile = (props) => {
   return (
     <div className={s.profile}>
       <ProfileInfo
+        isOvner={props.isOvner}
         profile={props.profile}
         status={props.status}
         UpdateStatus={props.UpdateStatus}
+        UpdateMainPhoto={props.UpdateMainPhoto}
       />
       <MyPosts store={props.store} />
     </div>
